@@ -25,11 +25,14 @@ docker commit `docker ps -n 1 | grep -v '^CONTAINER' | awk '{ print $1 }'` amp-p
 # select/init project 
 docker run -p 9005:9005 -v "$PWD:/app" -w "/app" -it amp-pwa-buildimage firebase init
 
+# generate a FIREBASE_TOKEN for use with gitlab runner
+docker run -p 9005:9005 -v "$PWD:/app" -w "/app" -it amp-pwa-buildimage firebase login:ci
+
 ```
 ein Image gebaut um das Projekt im Container zu bauen und zu deployen. 
 
 Konkrete Next Steps:
-- Firebase config, gitlab connect, push-to-deploy
+- gitlab connect, push-to-deploy
 - Danach VueJs
 
 Directory Structure

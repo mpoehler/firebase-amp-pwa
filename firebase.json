@@ -10,6 +10,7 @@
     ]
   },
   "hosting": {
+    "target": "amp-pwa-showcase",
     "public": "public",
     "ignore": [
       "firebase.json",
