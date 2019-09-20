@@ -21,8 +21,9 @@
   "devDependencies": {
     "amphtml-validator": "^1.0.23",
     "autoprefixer": "^9.6.0",
-    "clean-css-cli": "^4.3.0",
     "browser-sync": "^2.26.5",
+    "chokidar": "^3.1.1",
+    "clean-css-cli": "^4.3.0",
     "concurrently": "^4.0.1",
     "cssnano": "^4.1.10",
     "imagemin-cli": "^5.0.0",
