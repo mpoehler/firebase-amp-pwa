@@ -35,6 +35,9 @@ Konkrete Next Steps:
 - gitlab connect, push-to-deploy
 - Danach VueJs
 
+Außerdem noch: 
+- das lokale Entwickeln für die AMP-Landingpage und die VueJS App muss noch gemacht werden. Mit Hot-Reloading und BrowserSync alles hübsch und schnell. Vielleicht sollte ich das noch vor dem VueJS einschieben.
+
 Directory Structure
 -------------------
 
