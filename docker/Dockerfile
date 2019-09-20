@@ -15,5 +15,5 @@ RUN apk add --update --no-cache make g++ automake autoconf libtool nasm libpng-d
 RUN npm install -g firebase-tools@^7.3.2
 
 # Some post building instructions
-RUN echo "Image was build, now configure the image to use your firebase project:"
-RUN echo ""
+RUN echo "Image was built, now configure the image to use your firebase project:"
+RUN echo "..."

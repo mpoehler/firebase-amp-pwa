@@ -28,15 +28,20 @@ docker run -p 9005:9005 -v "$PWD:/app" -w "/app" -it amp-pwa-buildimage firebase
 # generate a FIREBASE_TOKEN for use with gitlab runner
 docker run -p 9005:9005 -v "$PWD:/app" -w "/app" -it amp-pwa-buildimage firebase login:ci
 
+# start hosting local
+docker run -v "$PWD:/app" -w "/app" -p "5000:5000" -it amp-pwa-buildimage npm run serve
+
+# start local hosting + watch
+docker run -v "$PWD:/app" -w "/app" -p "5000:5000" -it amp-pwa-buildimage npm run serve:watch
+
 ```
 ein Image gebaut um das Projekt im Container zu bauen und zu deployen. 
 
 Konkrete Next Steps:
-- gitlab connect, push-to-deploy
+- das lokale Entwickeln für die AMP-Landingpage und die VueJS App muss noch gemacht werden. Mit Hot-Reloading und BrowserSync alles hübsch und schnell. Vielleicht sollte ich das noch vor dem VueJS einschieben. Das ist jetzt so einigermaßen fertig. Man kann mit **serve:watch** einen kompletten Build machen und dann werden scss, images überwacht - was jetzt noch fehlt ist ein watch mode bei createPages. Das wäre schon fein.
+- die AMP-Seiten Homepage und die andere ein wenig hübsch machen und dabei das lokale Development schön machen.
 - Danach VueJs
 
-Außerdem noch: 
-- das lokale Entwickeln für die AMP-Landingpage und die VueJS App muss noch gemacht werden. Mit Hot-Reloading und BrowserSync alles hübsch und schnell. Vielleicht sollte ich das noch vor dem VueJS einschieben.
 
 Directory Structure
 -------------------
