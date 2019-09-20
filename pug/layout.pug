@@ -1,0 +1,45 @@
+block vars
+doctype
+html(⚡, lang="en")
+    head
+        meta(charset="utf-8")
+        meta(http-equiv="X-UA-Compatible",content="IE=edge")
+        meta(name="viewport",content="width=device-width,minimum-scale=1")
+        meta(name="apple-mobile-web-app-title",content="LensBot")
+        meta(name="application-name",content="LensBot")
+        meta(name="msapplication-TileColor",content="#0071bc")
+        meta(name="theme-color",content="#0071bc")
+        block description
+        link(rel="preload",as="script",href="https://cdn.ampproject.org/v0.js")
+        link(rel="preconnect dns-prefetch",href="https://fonts.gstatic.com/",crossorigin)
+        link(rel="manifest",href="/manifest.json")
+        link(rel="icon",type="image/png",sizes="32x32",href="/favicon-32x32.png")
+        link(rel="icon",type="image/png",sizes="16x16",href="/favicon-16x16.png")
+        link(rel="apple-touch-icon",sizes="180x180",href="/apple-touch-icon.png")
+        link(rel="mask-icon",href="/safari-pinned-tab.svg",color="#0071bc")
+        script(async,src="https://cdn.ampproject.org/v0.js")
+        //- Import other AMP Extensions here
+        block customAMPExt
+        script(async,custom-element="amp-sidebar",src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js")
+        script(async,custom-element="amp-analytics",src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js")
+        link(href="https://fonts.googleapis.com/css?family=Roboto&display=swap",rel="stylesheet")
+        block customCss
+        |<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+        link(rel="canonical",href="https://lensbot.net")
+        meta(property="og:image:height",content="268")
+        meta(property="og:image:width",content="512")
+        meta(property="og:title",content="LensBot - einfach g&uuml;nstige Kontaktlinsen")
+        meta(property="og:description",content="LensBot bestellt f&uuml;r Dich immer beim g&uuml;nstigsten Anbieter.")
+        meta(property="og:url",content="https://lensbot.net")
+        meta(property="og:image",content="https://lensbot.net/og-image.jpg")
+
+        block title
+        block structuredData
+        script(async,custom-element="amp-install-serviceworker",src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js")
+    body
+        amp-analytics(config=`https://www.googletagmanager.com/amp.json?id=${config.gtmid}&gtm.url=SOURCE_URL`,data-credentials="include")
+        include ./sidebar
+        main
+            block main
+        amp-install-serviceworker(src="/sw.js",layout="nodisplay",data-iframe-src="/install-service-worker.html")
+

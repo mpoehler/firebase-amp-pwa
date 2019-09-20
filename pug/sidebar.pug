@@ -1,0 +1,21 @@
+header
+    a(on="tap:sidebar.toggle")
+        include ../inline-data/svg/baseline-menu-24px.svg
+    a(href="/")
+        include ../inline-data/svg/lensbot_logo.svg
+    include ../inline-data/svg/baseline-person_outline-24px.svg
+amp-sidebar(id="sidebar",layout="nodisplay",side="left")
+    div.sidebar-header
+        svg
+            use(href="#logo")
+        span Einfach günstige Kontaktlinsen
+    nav
+        ul 
+            li
+                a(href="/")
+                    include ../inline-data/svg/baseline-home-24px.svg
+                    div Startseite
+            li 
+                a(href="/apage.html") 
+                    include ../inline-data/svg/baseline-question_answer-24px.svg
+                    div FAQ
