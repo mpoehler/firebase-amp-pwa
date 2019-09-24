@@ -29,6 +29,7 @@ deployproduction:
     - npm run build
     # build app
     - cd app
+    - yarn global add @vue/cli-service-global
     - yarn build
     # apply hosting target "website"
     - firebase target:apply hosting website amp-pwa-showcase
