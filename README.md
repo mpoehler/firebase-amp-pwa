@@ -50,6 +50,9 @@ docker run -v "$PWD:/app" -w "/app/app" -p "8080:8080" -it amp-pwa-buildimage ya
 # add vuetifiy
 docker run -v "$PWD:/app" -w "/app/app" -it amp-pwa-buildimage vue add vuetify
 
+# build the app
+docker run -v "$PWD:/app" -w "/app/app" -it amp-pwa-buildimage yarn build
+
 ```
 ein Image gebaut um das Projekt im Container zu bauen und zu deployen. 
 

@@ -27,6 +27,9 @@ deployproduction:
     # build amp pages
     - npm install
     - npm run build
+    # build app
+    - cd app
+    - yarn build
     # apply hosting target "website"
     - firebase target:apply hosting website amp-pwa-showcase
     # deploy firebase project
