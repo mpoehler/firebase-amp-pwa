@@ -58,7 +58,8 @@ ein Image gebaut um das Projekt im Container zu bauen und zu deployen.
 
 Konkrete Next Steps:
 - das lokale Entwickeln für die AMP-Landingpage und die VueJS App muss noch gemacht werden. Mit Hot-Reloading und BrowserSync alles hübsch und schnell. Vielleicht sollte ich das noch vor dem VueJS einschieben. Das ist jetzt so einigermaßen fertig. Man kann mit **serve:watch** einen kompletten Build machen und dann werden scss, images überwacht - was jetzt noch fehlt ist ein watch mode bei createPages. Das wäre schon fein. DONE (So einigermaßen)
-- Jetzt VueJs-Vuetify aufsetzen
+- Jetzt VueJs-Vuetify aufsetzen. Done.
+- Jetzt sollte erstmal ein Vuetify-App-Rahmen aufgesetzt werden.
 - die AMP-Seiten Homepage und die andere ein wenig hübsch machen damit das mit dem Vuetify-Design hinkommt.
 - und bei der ganzen Nummer der das lokale Development schön machen.
 
