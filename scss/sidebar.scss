@@ -1,10 +1,29 @@
+@import 'global';
+
 header {
     height: 56px;
     margin-top: 0px;
-    transform: translateY(0px);
+    padding-left: 20px;
+    padding-right: 20px;
     left: 0px;
     right: 0px;
     position: fixed;
-    top: 0;
     z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: $text-color;
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+    .title {
+        font-size: 20px;
+        font-weight: 300;
+    }
+    svg {
+        fill: rgba(0, 0, 0, 0.54);
+    }
+}
+@media (min-width: 960px) {
+    header {
+        height: 64px;
+    }
 }
