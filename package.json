@@ -19,6 +19,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@mdi/svg": "^4.4.95",
     "amphtml-validator": "^1.0.23",
     "autoprefixer": "^9.6.0",
     "browser-sync": "^2.26.5",

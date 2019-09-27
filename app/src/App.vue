@@ -1,27 +1,52 @@
 <template lang="pug">
   v-app
+    v-navigation-drawer(app, v-model="drawer", temporary)
+      v-list-item
+        v-list-item-content
+          v-list-item-title.title Application
+          v-list-item-subtitle subtext
+      v-divider
+      v-list(dense, nav)
+        v-list-item(link, to="/")
+          v-list-item-icon
+            v-icon {{ mdiHome }}
+          v-list-item-content
+            v-list-item-title Home
+        v-list-item(link, to="/about")
+          v-list-item-icon
+            v-icon {{ mdiAccount }}
+          v-list-item-content
+            v-list-item-title About
+
     v-app-bar(app)
-      v-toolbar-title.headline.text-uppercase
-        span Vuetify
-        span.font-weight-light MATERIAL DESIGN
+      v-icon(@click.stop="drawer = !drawer") {{ mdiMenu }}
+      v-toolbar-title
+        span.font-weight-light AMP-PWA Demo
       v-spacer
-      v-btn(text,href="https://github.com/vuetifyjs/vuetify/releases/latest",target="_blank")
-        span.mr-2 Latest Release
+      v-icon {{ mdiAccount }}
     v-content
-      HelloWorld
+      router-view
+    v-footer(app) &copy; Company
 </template>
 
+<style lang="scss">
+.v-toolbar__title {
+  width: 100%;
+  text-align: center;
+}
+</style>
 <script lang="ts">
 import Vue from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+import { mdiAccount, mdiMenu, mdiHome } from "@mdi/js";
 
 export default Vue.extend({
   name: "App",
-  components: {
-    HelloWorld
-  },
+  components: {},
   data: () => ({
-    //
+    drawer: null,
+    mdiAccount: mdiAccount,
+    mdiMenu: mdiMenu,
+    mdiHome: mdiHome
   })
 });
 </script>

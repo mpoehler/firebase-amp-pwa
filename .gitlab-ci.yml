@@ -31,7 +31,6 @@ deployproduction:
     - cd app
     - yarn global add @vue/cli
     - yarn add @vue/cli-service-global
-    - yarn install
     - yarn build
     - cd ..
     # apply hosting target "website"

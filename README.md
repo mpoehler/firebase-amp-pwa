@@ -68,6 +68,13 @@ Offene Punkte:
 - In der App würde ich gerne Vuetify benutzen. Es wäre eigentlich cool, wenn ich die Styles aus dem Vuetify projekt benutzen könnte in den AMP-Seiten. Sozusagen den gleichen Theme benutzen. Dazu muss man sich mal angucken wie da die Styles benutzt werden. Also eigentlich eine Vuetify a la Carte installation, bei der dann das AMP-Projekt sein styles zieht. Das bedeutet auch, dass das App-Projekt vor den AMP Seiten gebaut werden muss. Also erstmal eine App mit Vuetify bauen und dann mal gucken, ob man die Styles in den AMP Seiten nutzen kann. Das führt allerdings auch zu Abhängigkeiten bei den AMP-Seiten zu dem Vuetify Projekt - das ist nicht so schön. Man kann ja auch das Aussehen der Elemente auf den AMP-Seiten manuell dem Look-and-Feel von Vuetify anpassen. Das ist zwar etwas Arbeit, aber man verwässert so nicht die AMP-Seiten und hat keine Abhängigkeiten. Nach einer Nacht drüber schlafen: Ja, das sollte man wirklich nur optisch angleichen und keine Abhängigkeiten erzeugen.
 
 
+NEXT:
+- dann layout der amp seite anpassen. Vor allem Header und Drawer inkl. Icons. Außerdem soll mal ein pug-template gemeinsam verwandt werden.
+- Dann mal PWA precaching per AMP probieren. Showcase mit precaching sollte gehen. (Ist das nicht unnötig und könnte man auch später machen?)
+- Alternativ anfangen das Lensbot Projekt auf der Basis aufzusetzen.
+
+- Bei den AMP-Seiten, geht das Hot-Reload nicht für die Pug seiten. Das Problem ist, dass im Falle einer Änderung in den SCSS files, die node-sass, dann der minimizer und dann das pug laufen muss, also die komplette pipeline.
+
 Directory Structure
 -------------------
 

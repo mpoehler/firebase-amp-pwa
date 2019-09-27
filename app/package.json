@@ -17,6 +17,8 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@mdi/js": "^4.4.95",
+    "@mdi/svg": "^4.4.95",
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
     "@vue/cli-plugin-typescript": "^3.11.0",
@@ -35,6 +37,8 @@
     "typescript": "^3.4.3",
     "vue-cli-plugin-vuetify": "^0.6.3",
     "vue-template-compiler": "^2.6.10",
-    "vuetify-loader": "^1.2.2"
+    "vuetify-loader": "^1.2.2",
+    "webpack": "^4.41.0",
+    "pug": "^2.0.4"
   }
 }
