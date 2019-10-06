@@ -3,7 +3,7 @@ DER PLAN
 
 1. Erstmal den AMP-Generator aus dem klv Projekt rüberholen. Aus dem data.json und den pug templates sollen statische Seiten entstehen. DONE.
 1. Dann ist vielleicht ein gute Zeitpunkt das Projekt mal bei github anzulegen, mirror zu gitlab und auf einem firebase projekt zu deployen. DONE.
-1. Eine VueJS App erstellen, die im Unterverzeichnis /app wohnt
+1. Eine VueJS App erstellen, die im Unterverzeichnis /app wohnt. done.
 1. Jetzt die Integration von Cloud-Functions probieren. Dabei soll man in der VueJS-App einfach eine Liste mit Einträgen editieren können und die soll auf einem AMP-Seite gelesen werden.
 1. Einen ServiceWorker mit Workbox erstellen, den ServiceWorker auf allen Seiten (/app/index.html & AMP-Serviceworker im layout) einbinden.
 1. Einen Artikel in Medium schreiben
@@ -29,10 +29,10 @@ docker run -p 9005:9005 -v "$PWD:/app" -w "/app" -it amp-pwa-buildimage firebase
 docker run -p 9005:9005 -v "$PWD:/app" -w "/app" -it amp-pwa-buildimage firebase login:ci
 
 # start hosting local
-docker run -v "$PWD:/app" -w "/app" -p "5000:5000" -it amp-pwa-buildimage npm run serve
+docker run -v "$PWD:/app" -w "/app" -p "5000:5000" -it amp-pwa-buildimage yarn run serve
 
 # start local hosting + watch
-docker run -v "$PWD:/app" -w "/app" -p "5000:5000" -it amp-pwa-buildimage npm run serve:watch
+docker run -v "$PWD:/app" -w "/app" -p "3000:3000" -it amp-pwa-buildimage yarn run serve:watch
 
 # create a project in app with vue-cli
 # first install vue-cli and commit 
@@ -69,11 +69,9 @@ Offene Punkte:
 
 
 NEXT:
-- dann layout der amp seite anpassen. Vor allem Header und Drawer inkl. Icons. Außerdem soll mal ein pug-template gemeinsam verwandt werden.
+- dann layout der amp seite anpassen. Vor allem Header und Drawer inkl. Icons. Außerdem soll mal ein pug-template gemeinsam verwandt werden. Drawer fehlt noch. Sie könnten ein gemeinsames Logo verwenden. Ist überhaupt die Frage was die wirklich so teilen an Inhalten...
 - Dann mal PWA precaching per AMP probieren. Showcase mit precaching sollte gehen. (Ist das nicht unnötig und könnte man auch später machen?)
 - Alternativ anfangen das Lensbot Projekt auf der Basis aufzusetzen.
-
-- Bei den AMP-Seiten, geht das Hot-Reload nicht für die Pug seiten. Das Problem ist, dass im Falle einer Änderung in den SCSS files, die node-sass, dann der minimizer und dann das pug laufen muss, also die komplette pipeline.
 
 Directory Structure
 -------------------
