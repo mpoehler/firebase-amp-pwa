@@ -56,7 +56,7 @@ docker run -p 9005:9005 -v "$PWD:/app" -w "/app" -it amp-pwa-buildimage firebase
 docker run -v "$PWD:/app" -w "/app" -p "5000:5000" -it amp-pwa-buildimage yarn run serve
 
 # start local hosting + watch
-docker run -v "$PWD:/app" -w "/app" -p "3000:3000" -it amp-pwa-buildimage yarn run serve:watch
+docker run -v "$PWD:/app" -w "/app" --name amp-pwa -p "3000:3000" -it amp-pwa-buildimage yarn run serve:watch
 
 # create a project in app with vue-cli
 # first install vue-cli and commit 
@@ -80,7 +80,6 @@ docker run -v "$PWD:/app" -w "/app/app" -it amp-pwa-buildimage yarn build
 ```
 ein Image gebaut um das Projekt im Container zu bauen und zu deployen. 
 
-
 Directory Structure
 ===================
 
@@ -92,7 +91,6 @@ Directory Structure
 - **pug**: all PUG templates
 - **static**: This folder contains all contents which should be copied statically into the public folder.
 
-
 Build Process
 -------------
 
@@ -101,6 +99,3 @@ Build Process
 1. Then the images from the image folder are optimized and copied into the public/img folder. (**build:images**)
 1. Optimized CSS files are generated from the SCSS, which are later integrated inline into the pages. (**build:scss, build:postcss**)
 1. Now the AMP pages can be created from the PUG templates and the data.json as well as other sources if necessary. (**build:createPages**)
-
-
-
