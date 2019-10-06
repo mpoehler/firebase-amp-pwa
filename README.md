@@ -1,13 +1,37 @@
-DER PLAN
-========
+WELCHES PROBLEM LÖST DIESES PROJEKT
+===================================
 
-1. Erstmal den AMP-Generator aus dem klv Projekt rüberholen. Aus dem data.json und den pug templates sollen statische Seiten entstehen. DONE.
-1. Dann ist vielleicht ein gute Zeitpunkt das Projekt mal bei github anzulegen, mirror zu gitlab und auf einem firebase projekt zu deployen. DONE.
-1. Eine VueJS App erstellen, die im Unterverzeichnis /app wohnt. done.
+PWAs Single-Page-Apps bieten eine tolle UserExperience. Leider laden sie nicht sehr schnell. Da gibt es viele Ansätze die dazu führen dass PWAs/SPAs schneller laden, aber sie werden nie so schnell laden wie zum Beispiel AMP-Seiten, die ja ggf. auch von Google gecached werden oder schon per prefetch geholt werden. 
+
+Die Idee dieses Projekts ist es, schnelle Landingages aus AMP-Basis zu erstellen, für eine SPA/PWA die dann komplexeren Funktionaliäten wie SignIn, komplexe Screens mit clientseitigem Zustand (FLUX), third-party payment providern usw. enthält. 
+
+LÖSUNG
+======
+Wir bauen einen Generator, der AMP-Pages aus einer Datenquelle - in unserem Fall einfach eine JSON-Datei - und ein paar Templates generiert. Dazu entwickeln wir eine SPA/PWA auf VueJs Basis. Auf den AMP-Seiten wird bereits ein Service-Worker installiert, der die SPA/PWA in wesentliche Teilen precached. Damit ist die SPA/PWA beim Aufruf der eigentlichen App-Url bereits im ServiceWorker Cache und damit instant da. 
+
+Rahmendaten zur Lösung:
+
+1. AMP-Landingpage Generator, data.json + pug-templates
+1. VueJs-SPA-PWA
+1. ServiceWorker mit precache der SPA/PWA
+1. Firebase Hosting to host AMP-Pages and SPA/PWA App
+1. Firebase Auth to use Authentication in the SPA/PWA App
+1. Firebase Cloud functions to deliver content to the AMP-Pages amp-list tag (to show a logged in user on an AMP Page)
+1. Das Projekt liegt public bei githund und wird automatisch gebaut bei gitlab
+
+TODOs
+=====
+
 1. Jetzt die Integration von Cloud-Functions probieren. Dabei soll man in der VueJS-App einfach eine Liste mit Einträgen editieren können und die soll auf einem AMP-Seite gelesen werden.
 1. Einen ServiceWorker mit Workbox erstellen, den ServiceWorker auf allen Seiten (/app/index.html & AMP-Serviceworker im layout) einbinden.
 1. Einen Artikel in Medium schreiben
 
+- Jetzt sollte erstmal ein Vuetify-App-Rahmen aufgesetzt werden.
+- die AMP-Seiten Homepage und die andere ein wenig hübsch machen damit das mit dem Vuetify-Design hinkommt.
+- und bei der ganzen Nummer der das lokale Development schön machen.
+- dann layout der amp seite anpassen. Vor allem Header und Drawer inkl. Icons. Außerdem soll mal ein pug-template gemeinsam verwandt werden. Drawer fehlt noch. Sie könnten ein gemeinsames Logo verwenden. Ist überhaupt die Frage was die wirklich so teilen an Inhalten...
+- Dann mal PWA precaching per AMP probieren. Showcase mit precaching sollte gehen. (Ist das nicht unnötig und könnte man auch später machen?)
+- Alternativ anfangen das Lensbot Projekt auf der Basis aufzusetzen.
 
 Ich hab' dann noch mit 
 ```
@@ -56,25 +80,9 @@ docker run -v "$PWD:/app" -w "/app/app" -it amp-pwa-buildimage yarn build
 ```
 ein Image gebaut um das Projekt im Container zu bauen und zu deployen. 
 
-Konkrete Next Steps:
-- das lokale Entwickeln für die AMP-Landingpage und die VueJS App muss noch gemacht werden. Mit Hot-Reloading und BrowserSync alles hübsch und schnell. Vielleicht sollte ich das noch vor dem VueJS einschieben. Das ist jetzt so einigermaßen fertig. Man kann mit **serve:watch** einen kompletten Build machen und dann werden scss, images überwacht - was jetzt noch fehlt ist ein watch mode bei createPages. Das wäre schon fein. DONE (So einigermaßen)
-- Jetzt VueJs-Vuetify aufsetzen. Done.
-- Jetzt sollte erstmal ein Vuetify-App-Rahmen aufgesetzt werden.
-- die AMP-Seiten Homepage und die andere ein wenig hübsch machen damit das mit dem Vuetify-Design hinkommt.
-- und bei der ganzen Nummer der das lokale Development schön machen.
-
-
-Offene Punkte:
-- In der App würde ich gerne Vuetify benutzen. Es wäre eigentlich cool, wenn ich die Styles aus dem Vuetify projekt benutzen könnte in den AMP-Seiten. Sozusagen den gleichen Theme benutzen. Dazu muss man sich mal angucken wie da die Styles benutzt werden. Also eigentlich eine Vuetify a la Carte installation, bei der dann das AMP-Projekt sein styles zieht. Das bedeutet auch, dass das App-Projekt vor den AMP Seiten gebaut werden muss. Also erstmal eine App mit Vuetify bauen und dann mal gucken, ob man die Styles in den AMP Seiten nutzen kann. Das führt allerdings auch zu Abhängigkeiten bei den AMP-Seiten zu dem Vuetify Projekt - das ist nicht so schön. Man kann ja auch das Aussehen der Elemente auf den AMP-Seiten manuell dem Look-and-Feel von Vuetify anpassen. Das ist zwar etwas Arbeit, aber man verwässert so nicht die AMP-Seiten und hat keine Abhängigkeiten. Nach einer Nacht drüber schlafen: Ja, das sollte man wirklich nur optisch angleichen und keine Abhängigkeiten erzeugen.
-
-
-NEXT:
-- dann layout der amp seite anpassen. Vor allem Header und Drawer inkl. Icons. Außerdem soll mal ein pug-template gemeinsam verwandt werden. Drawer fehlt noch. Sie könnten ein gemeinsames Logo verwenden. Ist überhaupt die Frage was die wirklich so teilen an Inhalten...
-- Dann mal PWA precaching per AMP probieren. Showcase mit precaching sollte gehen. (Ist das nicht unnötig und könnte man auch später machen?)
-- Alternativ anfangen das Lensbot Projekt auf der Basis aufzusetzen.
 
 Directory Structure
--------------------
+===================
 
 - **data**: contains data to generate the static AMP Pages. 
 - **generated**: contains intermediate results that occur during the build process.
