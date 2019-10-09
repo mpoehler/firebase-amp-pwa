@@ -14,7 +14,7 @@ EXPOSE 3000
 # This is needed for npm packages like imagemin-cli
 RUN apk add --update --no-cache make g++ automake autoconf libtool nasm libpng-dev
 # And install of firebase tools is also needed
-RUN npm install -g firebase-tools@^7.4.0
+RUN npm install -g firebase-tools@^7.5.0
 
 # this can also be tested next time:
 # curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
