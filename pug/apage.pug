@@ -1,0 +1,16 @@
+extends layout
+
+block customCss
+    style(amp-custom)
+        include ../generated/optimized_css/apage.css
+
+block main
+    form(action="/app/")
+        select(id="product",name="product")
+            option White Shorts
+            option Blue Shorts
+        select(id="size",name="size")
+            option 36/36
+            option 35/35
+            option 36/34
+        input(type="submit")

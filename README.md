@@ -3,7 +3,7 @@ WELCHES PROBLEM LÖST DIESES PROJEKT
 
 PWAs Single-Page-Apps bieten eine tolle UserExperience. Leider laden sie nicht sehr schnell. Da gibt es viele Ansätze die dazu führen dass PWAs/SPAs schneller laden, aber sie werden nie so schnell laden wie zum Beispiel AMP-Seiten, die ja ggf. auch von Google gecached werden oder schon per prefetch geholt werden. 
 
-Die Idee dieses Projekts ist es, schnelle Landingages aus AMP-Basis zu erstellen, für eine SPA/PWA die dann komplexeren Funktionaliäten wie SignIn, komplexe Screens mit clientseitigem Zustand (FLUX), third-party payment providern usw. enthält. 
+Die Idee dieses Projekts ist es, schnelle Landingages aus AMP-Basis zu erstellen, für eine SPA/PWA die dann komplexeren Funktionaliäten wie SignIn, komplexe Screens mit clientseitigem Zustand (FLUX), third-party payment providern usw. enthält. Beim Laden der AMP-Seiten soll ein ServiceWorker installiert werden, der die App bereits in den cache lädt.
 
 LÖSUNG
 ======
@@ -17,21 +17,25 @@ Rahmendaten zur Lösung:
 1. Firebase Hosting to host AMP-Pages and SPA/PWA App
 1. Firebase Auth to use Authentication in the SPA/PWA App
 1. Firebase Cloud functions to deliver content to the AMP-Pages amp-list tag (to show a logged in user on an AMP Page)
-1. Das Projekt liegt public bei githund und wird automatisch gebaut bei gitlab
+1. Das Projekt liegt public bei github und wird automatisch gebaut bei gitlab
 
 TODOs
 =====
 
-1. Jetzt die Integration von Cloud-Functions probieren. Dabei soll man in der VueJS-App einfach eine Liste mit Einträgen editieren können und die soll auf einem AMP-Seite gelesen werden.
+1. Jetzt die Integration von Cloud-Functions probieren. Dabei soll man sich in der VueJS-App einloggen können. Der Login-Zustand soll dann per AMP-List auf den AMP-Seiten eingeblendet werden können.
 1. Einen ServiceWorker mit Workbox erstellen, den ServiceWorker auf allen Seiten (/app/index.html & AMP-Serviceworker im layout) einbinden.
+1. passwordless login könnte man noch einbauen. 
+1. Google Analytics ist auf jeden Fall noch ein wichtiges Thema. Da also den GTM einbauen in der App und auch auf den AMP Seiten. Dazu könnte man dann später die KPIs definieren und in einem dedizierten Dashboard über Google Datastudio auswerfen.
 1. Einen Artikel in Medium schreiben
 
-- Jetzt sollte erstmal ein Vuetify-App-Rahmen aufgesetzt werden.
-- die AMP-Seiten Homepage und die andere ein wenig hübsch machen damit das mit dem Vuetify-Design hinkommt.
-- und bei der ganzen Nummer der das lokale Development schön machen.
-- dann layout der amp seite anpassen. Vor allem Header und Drawer inkl. Icons. Außerdem soll mal ein pug-template gemeinsam verwandt werden. Drawer fehlt noch. Sie könnten ein gemeinsames Logo verwenden. Ist überhaupt die Frage was die wirklich so teilen an Inhalten...
 - Dann mal PWA precaching per AMP probieren. Showcase mit precaching sollte gehen. (Ist das nicht unnötig und könnte man auch später machen?)
-- Alternativ anfangen das Lensbot Projekt auf der Basis aufzusetzen.
+- Alternativ anfangen das Lensbot Projekt auf der Basis aufzusetzen. (später, vorher noch Login rund machen - und was ist noch zu klären???)
+- Datenübergabe der Landingpage an die App könnte man auch noch konstruieren. Hier könnte man einen Hosenshop simulieren, man soll seine Hose und seine Größe angeben. Dann wird man auf die App weitergeleitet und die muss die Daten dann erstmal in den VUEX ablegen und dann ggf. auf das Login weiterleiten. Das könnte man eigentlich in einem Guard machen, oder? Der checkt einfach die Request-Parameter (geht das auch bei POST?) und legt die ggf. in den VUEX ab. Spätere Formulare werden da dann einfach dran gebunden. 
+- Analytics ist vorher noch zu klären. 
+  Bei dem späteren Lensbot Projekt ist es ja so, dass die Leute aus unterschiedlichen Quellen auf den AMP-Landingpages landen. Dort geben sie ihre Daten ein und werden dann in die App geschickt, in der sie sich erstmal anmelden müssen. Nach der Anmeldung müssen die Leute ihre Zahlungsdaten eingeben und bekommen dann nochmal ein Summary ihrer Bestellung angezeigt. Das ist also ein klassischer Funnel, der nach Quelle(SEM-Kampagne, SEO, usw) aufgesplittert werden muss.
+- payment provider mache ich dann erst im Lensbot projekt
+- Man könnte noch die Begrüßungsemail verschicken. 
+- 
 
 Ich hab' dann noch mit 
 ```
@@ -41,10 +45,10 @@ docker build -t amp-pwa-buildimage .
 
 # do the login in the image
 cd ..
-docker run -p 9005:9005 -v "$PWD:/app" -w "/app" -it amp-pwa-buildimage firebase login
+docker run -p 9005:9005 -v "$PWD:/app" -w "/app" --name amp-pwa -it amp-pwa-buildimage firebase login
 
 # persist container state
-docker commit `docker ps -n 1 | grep -v '^CONTAINER' | awk '{ print $1 }'` amp-pwa-buildimage
+docker commit amp-pwa amp-pwa-buildimage
 
 # select/init project 
 docker run -p 9005:9005 -v "$PWD:/app" -w "/app" -it amp-pwa-buildimage firebase init
