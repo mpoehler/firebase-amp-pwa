@@ -8,6 +8,14 @@ import vuetify from "./plugins/vuetify";
 
 Vue.config.productionTip = false;
 
+// Check that service workers are supported
+if ("serviceWorker" in navigator) {
+  // Use the window load event to keep the page load performant
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/sw.js");
+  });
+}
+
 const firebaseConfig = {
   apiKey: "AIzaSyAZWCy4ngINS_fWs3tDWyJ23c1pVHETJK0",
   authDomain: "amp-pwa-f89b2.firebaseapp.com",
