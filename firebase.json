@@ -10,7 +10,6 @@
     ]
   },
   "hosting": {
-    "target": "website",
     "public": "public",
     "ignore": [
       "firebase.json",
