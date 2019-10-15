@@ -1,13 +1,12 @@
 header
     a(on="tap:sidebar.toggle")
         include ../node_modules/@mdi/svg/svg/menu.svg
-    a(href="/") AMP-PWA Demo
+    span.title AMP-PWA Demo
     include ../node_modules/@mdi/svg/svg/account.svg
 amp-sidebar(id="sidebar",layout="nodisplay",side="left")
     div.sidebar-header
-        svg
-            use(href="#logo")
-        span Einfach günstige Kontaktlinsen
+        h6 Application
+        span subtext
     nav
         ul 
             li
@@ -18,3 +17,7 @@ amp-sidebar(id="sidebar",layout="nodisplay",side="left")
                 a(href="/apage.html") 
                     include ../inline-data/svg/baseline-question_answer-24px.svg
                     div FAQ
+            li 
+                a(href="/app") 
+                    include ../inline-data/svg/baseline-security-24px.svg
+                    div App

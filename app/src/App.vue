@@ -17,6 +17,11 @@
             v-icon {{ mdiAccount }}
           v-list-item-content
             v-list-item-title About
+        v-list-item(link,@click="logout")
+          v-list-item-icon
+            v-icon {{ mdiLogout }}
+          v-list-item-content
+            v-list-item-title Logout
 
     v-app-bar(app)
       v-icon(@click.stop="drawer = !drawer") {{ mdiMenu }}
@@ -37,16 +42,24 @@
 </style>
 <script lang="ts">
 import Vue from "vue";
-import { mdiAccount, mdiMenu, mdiHome } from "@mdi/js";
+import Component from "vue-class-component";
+import firebase from "firebase/app";
+import { mdiAccount, mdiMenu, mdiHome, mdiLogout } from "@mdi/js";
 
-export default Vue.extend({
-  name: "App",
-  components: {},
-  data: () => ({
-    drawer: null,
-    mdiAccount: mdiAccount,
-    mdiMenu: mdiMenu,
-    mdiHome: mdiHome
-  })
-});
+@Component
+export default class App extends Vue {
+  drawer = null;
+  mdiAccount = mdiAccount;
+  mdiMenu = mdiMenu;
+  mdiHome = mdiHome;
+  mdiLogout = mdiLogout;
+  logout() {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        this.$router.replace("signin");
+      });
+  }
+}
 </script>
