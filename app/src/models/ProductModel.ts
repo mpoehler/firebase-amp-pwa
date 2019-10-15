@@ -1,6 +1,6 @@
 export default class ProductModel {
-  name: string = '';
-  size: string = '';
+  name: string = "";
+  size: string = "";
 
   populateFromQuery(query: any): void {
     if (Object.keys(query).includes("name")) {
