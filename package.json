@@ -36,9 +36,7 @@
     "postcss-cli": "^6.1.2",
     "pug-cli": "^1.0.0-alpha6",
     "shelljs": "^0.8.3",
-    "watch": "^1.0.2"
-  },
-  "dependencies": {
+    "watch": "^1.0.2",
     "workbox-build": "^4.3.1"
   }
 }
