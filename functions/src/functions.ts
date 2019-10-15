@@ -15,10 +15,10 @@ export async function  getUser(req: Request, res: Response) {
     try {
       const decodedIdToken = await admin.auth().verifyIdToken(req.cookies['__session']);
       console.log(`User: ${JSON.stringify(decodedIdToken)}`);
-      let uid = decodedIdToken.uid;
+      const uid = decodedIdToken.uid;
       console.log(`uid: ${uid}`);
       // fetch user info
-      let user = await admin.auth().getUser(uid);
+      const user = await admin.auth().getUser(uid);
       console.log(`user: ${user}`);
     } catch (error) {
       console.error('Error while verifying Firebase ID token:', error);
