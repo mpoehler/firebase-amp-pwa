@@ -20,7 +20,7 @@ deployproduction:
     - firebase use $FIREBASE_PROJECT --token $FIREBASE_TOKEN
     - cd app
     - yarn global add @vue/cli
-    - yarn global add @vue/cli-service-global
+    - yarn add @vue/cli-service-global
     - cd ..
     # build functions
     - cd functions
