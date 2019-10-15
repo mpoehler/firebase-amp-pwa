@@ -33,4 +33,4 @@ deployproduction:
     # apply hosting target "website"
     - firebase target:apply hosting website amp-pwa-showcase
     # deploy firebase project
-    - firebase deploy -m "Pipe $CI_PIPELINE_ID Build $CI_BUILD_ID" --token $FIREBASE_TOKEN --force
+    - firebase deploy --debug -m "Pipe $CI_PIPELINE_ID Build $CI_BUILD_ID" --token $FIREBASE_TOKEN --force
