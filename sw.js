@@ -1,5 +1,4 @@
-importScripts("workbox-v4.3.1/workbox-sw.js");
-workbox.setConfig({modulePathPrefix: "workbox-v4.3.1"});
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
 
 workbox.core.setCacheNameDetails({prefix: "pre-cache"});
 
