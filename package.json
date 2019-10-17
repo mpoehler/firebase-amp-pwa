@@ -38,5 +38,9 @@
     "shelljs": "^0.8.3",
     "watch": "^1.0.2",
     "workbox-build": "^4.3.1"
+  },
+  "dependencies": {
+    "eslint": "^6.5.1",
+    "global": "^4.4.0"
   }
 }

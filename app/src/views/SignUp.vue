@@ -5,7 +5,7 @@
         v-card-text
           .login
             h3 Sign Up
-            v-text-field(ref="email",v-model="email",label="Email",placeholder="your@email.com",outlined)
+            v-text-field(ref="email",v-model="email",label="Email",placeholder="your@email.com",outlined,autocomplete="email",name="email")
             v-text-field(ref="password",v-model="password",:append-icon="showPassword ? mdiEye : mdiEyeOff",:rules="[rules.required, rules.min]",:type="showPassword ? 'text' : 'password'",name="password",label="Password",counter,@click:append="showPassword = !showPassword",outlined)
         v-card-actions
            v-btn(text,to="/signin") Back to Login

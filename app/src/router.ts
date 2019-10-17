@@ -59,7 +59,7 @@ router.beforeEach((to, from, next) => {
   // console.log('query: ' + JSON.stringify(to.query));
   if (to.query) {
     Object.keys(to.query).forEach(key => {
-      console.log(`${key}=${to.query[key]}`);
+      // console.log(`${key}=${to.query[key]}`);
     });
   }
   next();

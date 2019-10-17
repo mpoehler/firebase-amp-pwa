@@ -1,0 +1,11 @@
+
+{
+    "eslint.workingDirectories": ["./app"],
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        {"language": "typescript", "autoFix": true},
+        "vue"
+    ],
+    "eslint.packageManager": "yarn"
+}
