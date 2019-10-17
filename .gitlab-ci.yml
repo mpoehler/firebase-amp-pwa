@@ -31,6 +31,6 @@ deployproduction:
     - yarn install
     - yarn run build
     # apply hosting target "website"
-    - firebase target:apply hosting website amp-pwa-showcase
+    # - firebase target:apply hosting website amp-pwa-showcase
     # deploy firebase project
     - firebase deploy --debug -m "Pipe $CI_PIPELINE_ID Build $CI_BUILD_ID" --token $FIREBASE_TOKEN --force
