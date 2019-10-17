@@ -12,7 +12,7 @@ EXPOSE 8080
 EXPOSE 3000
 
 # This is needed for npm packages like imagemin-cli
-RUN apk add --update --no-cache make g++ automake autoconf libtool nasm libpng-dev
+RUN apk add --update --no-cache make g++ automake autoconf libtool nasm libpng-dev curl
 # And install of firebase tools is also needed
 RUN npm install -g firebase-tools@^7.5.0
 
