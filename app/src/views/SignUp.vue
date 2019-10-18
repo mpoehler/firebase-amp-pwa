@@ -5,8 +5,30 @@
         v-card-text
           .login
             h3 Sign Up
-            v-text-field(ref="email",v-model="email",label="Email",placeholder="your@email.com",outlined,autocomplete="email",name="email")
-            v-text-field(ref="password",v-model="password",:append-icon="showPassword ? mdiEye : mdiEyeOff",:rules="[rules.required, rules.min]",:type="showPassword ? 'text' : 'password'",name="password",label="Password",counter,@click:append="showPassword = !showPassword",outlined)
+            v-text-field(
+              ref="email"
+              v-model="email"
+              label="Email"
+              placeholder="your@email.com"
+              outlined
+              autocomplete="email"
+              name="email"
+              :error-messages="emailError"
+            )
+            v-text-field(
+              ref="password"
+              v-model="password"
+              :append-icon="showPassword ? mdiEye : mdiEyeOff"
+              :rules="[rules.required, rules.min]"
+              :type="showPassword ? 'text' : 'password'"
+              name="password"
+              label="Password"
+              counter
+              @click:append="showPassword = !showPassword"
+              outlined
+              :error-messages="passwordError"
+              @change="signup"
+            )
         v-card-actions
            v-btn(text,to="/signin") Back to Login
            div.flex-grow-1
@@ -33,7 +55,9 @@ export default class SignUp extends Vue {
   mdiEye = mdiEye;
   mdiEyeOff = mdiEyeOff;
   password: string = "";
+  passwordError: string = "";
   email: string = "";
+  emailError: string = "";
   showPassword = false;
   rules = {
     required: (value: String) => !!value || "Required.",
@@ -46,12 +70,31 @@ export default class SignUp extends Vue {
       .auth()
       .createUserWithEmailAndPassword(this.email, this.password)
       .then(
-        user => this.$router.replace("/"),
-        err => alert("Oops. " + err.message)
+        user => {
+          // signup successfull, send verification email
+          this.$router.replace("/");
+        },
+        err => {
+          switch (err.code) {
+            case "auth/invalid-email":
+              this.emailError = "Email format invalid";
+              break;
+            case "auth/weak-password":
+              this.passwordError = "Password is too weak!";
+              break;
+            default:
+              alert("Oops. " + err.message + " code: " + err.code);
+          }
+        }
       );
   }
   mounted() {
-    (this.$refs["email"] as HTMLElement).focus();
+    if (this.$store.state.email) {
+      this.email = this.$store.state.email;
+      (this.$refs["password"] as HTMLElement).focus();
+    } else {
+      (this.$refs["email"] as HTMLElement).focus();
+    }
   }
 }
 </script>
