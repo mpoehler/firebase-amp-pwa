@@ -5,7 +5,7 @@
         "javascript",
         "javascriptreact",
         {"language": "typescript", "autoFix": true},
-        "vue"
+        {"language": "vue", "autoFix": true}
     ],
     "eslint.packageManager": "yarn"
 }
