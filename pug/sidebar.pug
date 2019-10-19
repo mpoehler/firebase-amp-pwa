@@ -1,8 +1,9 @@
 header
     a(on="tap:sidebar.toggle")
-        include ../node_modules/@mdi/svg/svg/menu.svg
+        include:removeXmlDocType ../node_modules/@mdi/svg/svg/menu.svg
     span.title AMP-PWA Demo
-    include ../node_modules/@mdi/svg/svg/account.svg
+    
+    include:removeXmlDocType ../node_modules/@mdi/svg/svg/account.svg
 amp-sidebar(id="sidebar",layout="nodisplay",side="left")
     div.sidebar-header
         h6 Application
@@ -11,13 +12,13 @@ amp-sidebar(id="sidebar",layout="nodisplay",side="left")
         ul 
             li
                 a(href="/")
-                    include ../inline-data/svg/baseline-home-24px.svg
+                    include:removeXmlDocType ../inline-data/svg/baseline-home-24px.svg
                     div Startseite
             li 
-                a(href="/apage.html") 
-                    include ../inline-data/svg/baseline-question_answer-24px.svg
+                a(href="/somedir/a-static-page.html") 
+                    include:removeXmlDocType ../inline-data/svg/baseline-question_answer-24px.svg
                     div FAQ
             li 
                 a(href="/app/") 
-                    include ../inline-data/svg/baseline-security-24px.svg
+                    include:removeXmlDocType ../inline-data/svg/baseline-security-24px.svg
                     div App

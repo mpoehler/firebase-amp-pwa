@@ -9,7 +9,15 @@ async function renderPage(page, config) {
     console.log('render page ' + page.url);
 
     // get template
-    const template = pug.compileFile('pug/' + page.template + '.pug');
+    var options = {
+        filters: {
+            'removeXmlDocType': function(text, options) {
+                // removes xml and doctype, typically used to import SVGs
+                return text.replace(/<\?.*\?>/g,"").replace(/<!DOCTYPE[^>]*>/g, "");
+            }
+        }
+    };
+    const template = pug.compileFile('pug/' + page.template + '.pug', options);
 
     // get resultfile
     let resultfile = page.url;
