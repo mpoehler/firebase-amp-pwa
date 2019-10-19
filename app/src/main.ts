@@ -5,6 +5,7 @@ import "firebase/auth";
 import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
+import "./firebaseInit";
 
 Vue.config.productionTip = false;
 
@@ -16,21 +17,9 @@ if ("serviceWorker" in navigator) {
   });
 }
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAZWCy4ngINS_fWs3tDWyJ23c1pVHETJK0",
-  authDomain: "amp-pwa-f89b2.firebaseapp.com",
-  databaseURL: "https://amp-pwa-f89b2.firebaseio.com",
-  projectId: "amp-pwa-f89b2",
-  storageBucket: "amp-pwa-f89b2.appspot.com",
-  messagingSenderId: "562014234949",
-  appId: "1:562014234949:web:fb262b1dadbed20c25362c",
-  measurementId: "G-FGPDCW33Q0"
-};
-
-firebase.initializeApp(firebaseConfig);
-
 let app: Vue | null = null;
 
+// deal with auth state changes
 firebase.auth().onAuthStateChanged(user => {
   // initialize App when firebase auth is ready
   if (!app) {

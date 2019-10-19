@@ -4,7 +4,7 @@
       v-card(ref="form")
         v-card-text
           .login
-            h3 Sign In
+            h3 {{teaserText}}
             v-text-field(ref="email",v-model="email",label="Email",placeholder="your@email.com",outlined,autocomplete="email",name="email",:error-messages="emailError")
             v-text-field(ref="password",v-model="password",:append-icon="showPassword ? mdiEye : mdiEyeOff",:rules="[rules.required, rules.min]",:type="showPassword ? 'text' : 'password'",name="password",label="Password",counter,@click:append="showPassword = !showPassword",outlined,:error-messages="passwordError",@change="login")
             v-btn(ref="passwordReset",small,text,@click="resetPassword") Reset Password
@@ -76,6 +76,7 @@ import Vue from "vue";
 import Component from "vue-class-component";
 import firebase from "firebase/app";
 import { mdiEye, mdiEyeOff } from "@mdi/js";
+import remoteConfig from "../remoteConfig";
 
 @Component
 export default class SignIn extends Vue {
@@ -93,6 +94,8 @@ export default class SignIn extends Vue {
   socialSignInProblemDialog = false;
   signInMethodsDialog = false;
   signinMethodText = "";
+  teaserText = remoteConfig.getString("welcome_message");
+  // teaserText = "huh";
   rules = {
     required: (value: String) => !!value || "Required.",
     min: (v: String) => {
