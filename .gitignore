@@ -66,3 +66,4 @@ typings/
 # generated things
 public
 generated
+app/src/firebaseconfig.ts
