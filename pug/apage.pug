@@ -4,9 +4,12 @@ block customCss
     style(amp-custom)
         include ../generated/optimized_css/apage.css
 
+block customAMPExt
+    script(async,custom-element="amp-form",src="https://cdn.ampproject.org/v0/amp-form-0.1.js")
+
 block main
-    form(action="/app/")
-        select(id="product",name="product")
+    form(action="/app/", target="_top")
+        select(id="name",name="name")
             option White Shorts
             option Blue Shorts
         select(id="size",name="size")
