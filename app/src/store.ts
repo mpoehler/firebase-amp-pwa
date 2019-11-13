@@ -10,8 +10,8 @@ export default new Vuex.Store({
     product: new ProductModel()
   },
   mutations: {
-    setProduct(state, p: ProductModel) {
-      state.product = p;
+    setProduct(state, product: ProductModel) {
+      state.product = product;
     },
     setEMail(state, email: string) {
       state.email = email;

@@ -1,4 +1,4 @@
-FROM node:10.16.3-alpine
+FROM node:12.13-alpine
 
 # needed for auth callback when using firebase login
 EXPOSE 9005
@@ -14,7 +14,7 @@ EXPOSE 3000
 # This is needed for npm packages like imagemin-cli
 RUN apk add --update --no-cache make g++ automake autoconf libtool nasm libpng-dev curl
 # And install of firebase tools is also needed
-RUN npm install -g firebase-tools@^7.5.0
+RUN npm install -g firebase-tools@^7.7.0
 
 # this can also be tested next time:
 # curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
