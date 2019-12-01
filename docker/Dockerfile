@@ -1,4 +1,4 @@
-FROM node:13.2-alpine
+FROM node:12.13-alpine
 
 # needed for auth callback when using firebase login
 EXPOSE 9005

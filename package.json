@@ -23,9 +23,9 @@
   "license": "ISC",
   "devDependencies": {
     "@mdi/svg": "^4.4.95",
-    "amphtml-validator": "^1.0.23",
+    "amphtml-validator": "^1.0.29",
     "autoprefixer": "^9.6.0",
-    "browser-sync": "^2.26.5",
+    "browser-sync": "^2.26.7",
     "chokidar": "^3.1.1",
     "clean-css-cli": "^4.3.0",
     "concurrently": "^4.0.1",
