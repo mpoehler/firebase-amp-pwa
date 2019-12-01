@@ -1,4 +1,4 @@
-image: node:10.15
+image: registry.gitlab.com/mpoehler/firebase-amp-pwa:latest
 
 stages:
   - build-staging
