@@ -41,4 +41,6 @@ deploy-staging:
   only:
     - master
   script:
+    - export FIREBASE_TOKEN=$FIREBASE_TOKEN
+    - firebase use $FIREBASE_PROJECT --token $FIREBASE_TOKEN
     - firebase deploy --debug -m "Pipe $CI_PIPELINE_ID Build $CI_BUILD_ID" --token $FIREBASE_TOKEN --force
