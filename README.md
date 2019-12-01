@@ -3,7 +3,7 @@ WELCHES PROBLEM LÖST DIESES PROJEKT
 
 PWAs Single-Page-Apps bieten eine tolle UserExperience. Leider laden sie nicht sehr schnell. Da gibt es viele Ansätze die dazu führen dass PWAs/SPAs schneller laden, aber sie werden nie so schnell laden wie zum Beispiel AMP-Seiten, die ja ggf. auch von Google gecached werden oder schon per prefetch geholt werden. 
 
-Die Idee dieses Projekts ist es, schnelle Landingages aus AMP-Basis zu erstellen, für eine SPA/PWA die dann komplexeren Funktionaliäten wie SignIn, komplexe Screens mit clientseitigem Zustand (FLUX), third-party payment providern usw. enthält. Beim Laden der AMP-Seiten soll ein ServiceWorker installiert werden, der die App bereits in den cache lädt.
+Die Idee dieses Projekts ist es, schnelle Landingages aus AMP-Basis zu erstellen, für eine SPA/PWA die dann komplexere Funktionaliäten wie SignIn, komplexe Screens mit clientseitigem Zustand (FLUX), third-party payment providern usw. enthält. Beim Laden der AMP-Seiten soll ein ServiceWorker installiert werden, der die App bereits in den Cache lädt.
 
 LÖSUNG
 ======
@@ -35,7 +35,10 @@ TODOs
   Bei dem späteren Lensbot Projekt ist es ja so, dass die Leute aus unterschiedlichen Quellen auf den AMP-Landingpages landen. Dort geben sie ihre Daten ein und werden dann in die App geschickt, in der sie sich erstmal anmelden müssen. Nach der Anmeldung müssen die Leute ihre Zahlungsdaten eingeben und bekommen dann nochmal ein Summary ihrer Bestellung angezeigt. Das ist also ein klassischer Funnel, der nach Quelle(SEM-Kampagne, SEO, usw) aufgesplittert werden muss.
 - payment provider mache ich dann erst im Lensbot projekt
 - Man könnte noch die Begrüßungsemail verschicken. 
-- 
+
+
+TODO Next
+=========
 
 Ich hab' dann noch mit 
 ```

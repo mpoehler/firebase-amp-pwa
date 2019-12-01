@@ -11,12 +11,12 @@
     "build:postcss:watch": "postcss -w ./generated/css/*.css --dir ./generated/optimized_css",
     "build:static": "mkdir -p public && cp -R ./static/* ./public",
     "build:images": "imagemin ./images --out-dir=./public/img",
-    "build:createPages": "node createPages.js",
+    "build:createPages": "source ./setEnvDevelopment.sh && node createPages.js",
     "build:app": "cd app && yarn build",
     "build:serviceWorker": "node createSW.js",
-    "build": "yarn run clean && yarn run build:static && yarn run build:images && yarn run build:scss && yarn run build:postcss && yarn run build:createPages && yarn run build:app && yarn run build:serviceWorker",
+    "build": "yarn run clean && source ./setEnvDevelopment.sh && yarn run build:static && yarn run build:images && yarn run build:scss && yarn run build:postcss && yarn run build:createPages && yarn run build:app && yarn run build:serviceWorker",
     "serve": "firebase serve --host 0.0.0.0 --only hosting",
-    "serve:watch": "concurrently --kill-others 'watch \"yarn build:createPages\" ./pug' 'watch \"yarn build:scss && yarn build:postcss && yarn build:createPages\" ./scss' 'yarn serve' 'cd app && yarn run build:watch' 'sleep 15 && browser-sync start --host \"0.0.0.0\" --proxy \"0.0.0.0:5000\" --files \"public/*\"'",
+    "serve:watch": "concurrently --kill-others 'watch \"source ./setEnvDevelopment.sh && yarn build:createPages\" ./pug' 'watch \"yarn build:scss && yarn build:postcss && yarn build:createPages\" ./scss' 'yarn serve' 'cd app && yarn run build:watch' 'sleep 15 && browser-sync start --host \"0.0.0.0\" --proxy \"0.0.0.0:5000\" --files \"public/*\"'",
     "serve:app": "cd app && yarn serve"
   },
   "author": "",
@@ -40,6 +40,8 @@
     "workbox-build": "^4.3.1"
   },
   "dependencies": {
+    "commander": "^4.0.1",
+    "dotenv": "^8.2.0",
     "eslint": "^6.5.1",
     "global": "^4.4.0"
   }

@@ -10,16 +10,19 @@
     "build:watch": "vue-cli-service build --watch"
   },
   "dependencies": {
-    "core-js": "^3.1.2",
+    "add": "^2.0.6",
     "firebase": "^7.1.0",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
+    "vue-gtm": "Shinigami92/vue-gtm#feature/typedefs",
     "vue-property-decorator": "^8.1.0",
     "vue-router": "^3.0.3",
     "vuetify": "^2.0.0",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "vuex-class": "^0.3.2"   
   },
   "devDependencies": {
+    "yarn": "^1.19.1",
     "@mdi/js": "^4.4.95",
     "@mdi/svg": "^4.4.95",
     "@vue/cli-plugin-babel": "^4.0.3",

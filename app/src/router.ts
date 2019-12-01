@@ -5,6 +5,7 @@ import Home from "./views/Home.vue";
 import SignIn from "./views/SignIn.vue";
 import SignUp from "./views/SignUp.vue";
 import store from "@/store";
+import ProductModel from "./models/ProductModel";
 
 Vue.use(Router);
 
@@ -46,6 +47,17 @@ const router = new Router({
   ]
 });
 
+// push query parameter in store
+router.beforeEach((to, from, next) => {
+  if (to.query.name && to.query.size) {
+    let pm = new ProductModel();
+    pm.populateFromQuery(to.query);
+    store.dispatch("setProduct", pm);
+  }
+  next();
+});
+
+// filter auth
 router.beforeEach((to, from, next) => {
   const currentUser = firebase.auth().currentUser;
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
@@ -53,16 +65,6 @@ router.beforeEach((to, from, next) => {
   if (requiresAuth && !currentUser) next("signin");
   else if (!requiresAuth && currentUser) next("/");
   else next();
-});
-
-router.beforeEach((to, from, next) => {
-  // console.log('query: ' + JSON.stringify(to.query));
-  if (to.query) {
-    Object.keys(to.query).forEach(key => {
-      // console.log(`${key}=${to.query[key]}`);
-    });
-  }
-  next();
 });
 
 export default router;
