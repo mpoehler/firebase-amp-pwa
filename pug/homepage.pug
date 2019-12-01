@@ -1,6 +1,16 @@
 extends layout
 
+block title 
+    title #{title}
+
+block description
+    meta(name="description",content="#{description}")
+
 block customCss
     style(amp-custom)
         include ../generated/optimized_css/homepage.css
+
+block main
+    h1 #{headline}
+    p #{text}
         

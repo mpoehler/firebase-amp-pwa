@@ -1,8 +1,6 @@
 {
     "common": {
-        "name": "AMP-PWA Showcase",
-        "baseurl": "https://amp-pwa-showcase.web.app",
-        "gtmid": "GTM-1234"
+        "name": "AMP-PWA Showcase"
     },
     "pages": [
         {
@@ -12,7 +10,7 @@
             "title": "Homepage title",
             "description": "Homepage description",
             "headline": "This is a AMP-PWA Demo",
-            "text": "On this page you see PWA Landingpages that installs a ServiceWorker and pre-cache a VueJs Application that can be reached by the <a href=\"/app·\">App-Link</a>."
+            "text": "On this page you see PWA Landingpages that installs a ServiceWorker and pre-cache a VueJs Application."
         },
         {
             "url": "/somedir/a-static-page.html",

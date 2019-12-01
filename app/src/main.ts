@@ -5,6 +5,7 @@ import "firebase/auth";
 import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
+import VueGtm from "vue-gtm";
 
 Vue.config.productionTip = false;
 
@@ -20,6 +21,21 @@ if ("serviceWorker" in navigator) {
 import "./firebaseconfig";
 
 let app: Vue | null = null;
+
+// add environment and version to the GTM Datalayer
+(<any>window).dataLayer = (<any>window).dataLayer || [];
+(<any>window).dataLayer.push({
+  environment: process.env.NODE_ENV,
+  version: process.env.VUE_APP_VERSION
+});
+
+// add GTM
+Vue.use(VueGtm, {
+  id: process.env.VUE_APP_GTM_ID,
+  debug: process.env.NODE_ENV != "production",
+  loadScript: true,
+  vueRouter: router
+});
 
 firebase.auth().onAuthStateChanged(user => {
   // initialize App when firebase auth is ready
@@ -52,5 +68,12 @@ firebase.auth().onAuthStateChanged(user => {
         // problem occured when sending the email
         console.error("Error on sending email: " + error.message);
       });
+  }
+
+  // fire event if a user logged in
+  if (user) {
+    Vue.gtm.trackEvent({
+      event: "Login"
+    });
   }
 });

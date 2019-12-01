@@ -67,3 +67,6 @@ typings/
 public
 generated
 app/src/firebaseconfig.ts
+
+# all env files
+.env.*

@@ -3,12 +3,29 @@ const fs = require('fs');
 const shell = require('shelljs');
 const pagedata = require('./data/data.json');
 const chokidar = require('chokidar');
+const program = require('commander');
+
+program
+  .option('-m, --mode <type>', 'mode of build, defaults to development');
+program.parse(process.argv);
+
+const mode = program.mode ? program.mode : 'development';
+
+// if NODE_ENV not set so far, do it according to mode
+process.env.NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV : mode;
+
+// copy all env key/values starting with VUE_APP_ into the pagedata.common object
+Object.keys(process.env)
+    .filter(key => key.startsWith('APP_'))
+    .forEach(key => pagedata.common[key] = process.env[key]);
+console.log(process.env.NODE_ENV);
+pagedata.common['NODE_ENV'] = process.env.NODE_ENV;  // and NODE_ENV as bonus ;-)
 
 async function renderPage(page, config) {
 
     console.log('render page ' + page.url);
 
-    // get template
+    // compile template
     var options = {
         filters: {
             'removeXmlDocType': function(text, options) {
@@ -40,7 +57,6 @@ async function renderPage(page, config) {
         }
     });
 };
-
 
 // decide mode here
 var args = process.argv.slice(2);

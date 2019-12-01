@@ -37,9 +37,11 @@ html(⚡, lang="en")
         block structuredData
         script(async,custom-element="amp-install-serviceworker",src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js")
     body
-        // amp-analytics(config=`https://www.googletagmanager.com/amp.json?id=${config.gtmid}&gtm.url=SOURCE_URL`,data-credentials="include")
+        amp-analytics(config=`https://www.googletagmanager.com/amp.json?id=${config.APP_GTM_AMP_ID}&gtm.url=SOURCE_URL`,data-credentials="include")
+            script(type="application/json")
+                |{ "vars": { "environment": "#{config.NODE_ENV}", "version": "#{config.APP_VERSION}" } }
+
         include ./sidebar
         main
             block main
         amp-install-serviceworker(src="/sw.js",layout="nodisplay",data-iframe-src="/install-service-worker.html")
-
