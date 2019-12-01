@@ -1,7 +1,8 @@
 image: node:10.15
 
 stages:
-  - deploy
+  - build-staging
+  - deploy-staging
 
 cache:                  
   paths:                
@@ -9,28 +10,47 @@ cache:
     - functions/node_modules/
   key: "$CI_COMMIT_REF_SLUG"
 
-deployproduction:
-  stage: deploy
-  environment: Production
+build-staging-functions:
+  stage: build-staging
+  environment: Staging
   only:
     - master
   script:
-    - export FIREBASE_TOKEN=$FIREBASE_TOKEN
+    - export STAGING_FIREBASE_TOKEN=$STAGING_FIREBASE_TOKEN
     - npm install -g firebase-tools
-    - firebase use $FIREBASE_PROJECT --token $FIREBASE_TOKEN
-    - cd app
-    - yarn global add @vue/cli
-    - yarn add @vue/cli-service-global
-    - cd ..
-    # build functions
+    - firebase use $STAGING_FIREBASE_PROJECT --token $STAGING_FIREBASE_TOKEN
     - cd functions
     - npm install
     - npm run build
-    - cd ..
-    # build amp pages & app
+
+build-staging-app:
+  stage: build-staging
+  environment: Staging
+  only:
+    - master
+  script:
+    - export STAGING_FIREBASE_TOKEN=$STAGING_FIREBASE_TOKEN
+    - npm install -g firebase-tools
+    - firebase use $STAGING_FIREBASE_PROJECT --token $STAGING_FIREBASE_TOKEN
+    - cd app
+    - yarn run build
+    - yarn global add @vue/cli
+    - yarn add @vue/cli-service-global    
+
+build-staging-amp:
+  stage: build-staging
+  environment: Staging
+  only:
+    - master
+  script:
+    - export VERSION=$CI_COMMIT_REF_SLUG
     - yarn install
     - yarn run build
-    # apply hosting target "website"
-    # - firebase target:apply hosting website amp-pwa-showcase
-    # deploy firebase project
-    - firebase deploy --debug -m "Pipe $CI_PIPELINE_ID Build $CI_BUILD_ID" --token $FIREBASE_TOKEN --force
+
+deploy-staging:
+  stage: deploy-staging
+  environment: Staging
+  only:
+    - master
+  script:
+    - firebase deploy --debug -m "Pipe $CI_PIPELINE_ID Build $CI_BUILD_ID" --token $STAGING_FIREBASE_TOKEN --force
