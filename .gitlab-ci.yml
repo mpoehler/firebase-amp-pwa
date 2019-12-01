@@ -23,7 +23,7 @@ build-staging-functions:
     - npm run build
   artifacts:
     paths:
-    - lib
+    - functions/lib
 
 build-staging-amp-and-app:
   stage: build-staging
