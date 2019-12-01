@@ -23,27 +23,15 @@ build-staging-functions:
     - npm install
     - npm run build
 
-build-staging-app:
-  stage: build-staging
-  environment: Staging
-  only:
-    - master
-  script:
-    - export STAGING_FIREBASE_TOKEN=$STAGING_FIREBASE_TOKEN
-    - npm install -g firebase-tools
-    - firebase use $STAGING_FIREBASE_PROJECT --token $STAGING_FIREBASE_TOKEN
-    - cd app
-    - yarn run build
-    - yarn global add @vue/cli
-    - yarn add @vue/cli-service-global    
-
-build-staging-amp:
+build-staging-amp-and-app:
   stage: build-staging
   environment: Staging
   only:
     - master
   script:
     - export VERSION=$CI_COMMIT_REF_SLUG
+    - export STAGING_FIREBASE_TOKEN=$STAGING_FIREBASE_TOKEN
+    - firebase use $STAGING_FIREBASE_PROJECT --token $STAGING_FIREBASE_TOKEN
     - yarn install
     - yarn run build
 

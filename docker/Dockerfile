@@ -12,13 +12,9 @@ EXPOSE 8080
 EXPOSE 3000
 
 # This is needed for npm packages like imagemin-cli
-RUN apk add --update --no-cache make g++ automake autoconf libtool nasm libpng-dev curl
+RUN apk add --update --no-cache make g++ automake autoconf libtool nasm libpng-dev curl python
 # And install of firebase tools is also needed
 RUN npm install -g firebase-tools@^7.8.1
+# add vue support
+RUN yarn global add @vue/cli @vue/cli-service-global 
 
-# this can also be tested next time:
-# curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
-
-# Some post building instructions
-RUN echo "Image was built, now configure the image to use your firebase project:"
-RUN echo "..."
