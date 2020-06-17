@@ -22,7 +22,7 @@
     "vuex-class": "^0.3.2"   
   },
   "devDependencies": {
-    "yarn": "^1.19.1",
+    "yarn": "^1.22.0",
     "@mdi/js": "^4.4.95",
     "@mdi/svg": "^4.4.95",
     "@vue/cli-plugin-babel": "^4.0.3",
