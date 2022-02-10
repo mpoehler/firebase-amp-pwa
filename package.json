@@ -32,7 +32,7 @@
     "cssnano": "^4.1.10",
     "imagemin-cli": "^5.0.0",
     "imagemin-optipng": "^7.0.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "postcss-cli": "^6.1.2",
     "pug-cli": "^1.0.0-alpha6",
     "shelljs": "^0.8.3",
